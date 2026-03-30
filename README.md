@@ -101,7 +101,12 @@ agroguide/
 1. Push the project to a **public GitHub repository**
 2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub
 3. Click **New app** → select your repo, branch (`main`), and entry file (`app.py`)
-4. Click **Deploy** — your app will be live at `https://your-app.streamlit.app` within minutes
+4. Click **Deploy** — your app will be live at `https://your-app.streamlit.app`
+
+---
+
+## DIRECT LINK
+Click here to get your perfect recommendation - https://agroguide-ps.streamlit.app/
 
 ---
 
@@ -142,4 +147,3 @@ This project is open source and available under the [MIT License](LICENSE).
   <i>AgroGuide — Empowering farmers with smart, data-driven crop decisions 🌍</i>
 </p>
 
-Demo: http://localhost:8501 
