@@ -1,6 +1,7 @@
 import streamlit as st
 
-# ── Crop recommendation logic ─────────────────────────────
+#Crop recommendation logic
+ 
 def recommend_crop(N, P, K, temp, humidity, ph, rainfall):
     if rainfall > 150 and 5.0 < ph < 7.5 and N > 50 and humidity > 70:
         return "🌾 Rice"
@@ -40,7 +41,8 @@ def recommend_crop(N, P, K, temp, humidity, ph, rainfall):
         return "🧑‍🌾 Consult Expert"
 
 
-# ── Ideal parameters per crop ─────────────────────────────
+#Ideal parameters per crop
+
 CROP_PRESETS = {
     "🌾 Rice":         dict(N=80,  P=40,  K=40,  temp=26.0, humidity=80, ph=6.5,  rainfall=200),
     "🌾 Wheat":        dict(N=80,  P=40,  K=40,  temp=22.0, humidity=55, ph=6.5,  rainfall=70),
@@ -62,10 +64,10 @@ CROP_PRESETS = {
 }
 
 
-# ── Page config ────────────────────────────────────────────
+#Page configuration
 st.set_page_config(page_title="AgroGuide", page_icon="🌍", layout="wide")
 
-# ── CSS ────────────────────────────────────────────────────
+#CSS
 st.markdown("""
 <style>
 .main { background: linear-gradient(135deg, #f0f8f5 0%, #e8f5e8 100%); }
@@ -135,7 +137,7 @@ h1 { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Session state ──────────────────────────────────────────
+#session state
 defaults = dict(N=60, P=50, K=55, temp=26.0, humidity=65, ph=6.5, rainfall=110)
 for key, val in defaults.items():
     if key not in st.session_state:
@@ -145,7 +147,7 @@ if "result" not in st.session_state:
     st.session_state.result = None
 
 
-# ── Sidebar ────────────────────────────────────────────────
+#Sidebar for crops
 with st.sidebar:
     st.markdown("""
     <div class="agroguide-brand">
@@ -172,7 +174,7 @@ with st.sidebar:
             st.rerun()
 
 
-# ── Page header ────────────────────────────────────────────
+#Page header
 st.markdown("""
 <div style='text-align:center; padding: 0.4rem 0 0.8rem 0'>
   <h1 style='color:#2E7D32; font-size:2.4rem; margin:0'>🌾 AgroGuide</h1>
@@ -180,7 +182,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── Row 1: Two slider columns ──────────────────────────────
+#Two slider columns
 col1, col2 = st.columns([1, 1])
 
 with col1:
@@ -196,14 +198,14 @@ with col2:
     ph       = st.slider("pH",              0.0,  14.0, key="ph")
     rainfall = st.slider("Rainfall (mm)",    0,   300,  key="rainfall")
 
-# ── Recommend button ───────────────────────────────────────
+#Recommend button
 st.markdown("<div style='margin-top: 1rem'>", unsafe_allow_html=True)
 if st.button("🚀 Recommend Best Crop", use_container_width=True):
     st.session_state.result = recommend_crop(N, P, K, temp, humidity, ph, rainfall)
     st.rerun()
 st.markdown("</div>", unsafe_allow_html=True)
 
-# ── Row 2: Result section (full width, below sliders) ──────
+#Result section
 st.markdown("<div style='margin-top: 1rem'>", unsafe_allow_html=True)
 
 if st.session_state.result:
@@ -222,7 +224,7 @@ if st.session_state.result:
     emoji     = result.split()[0]
     crop_name = " ".join(result.split()[1:])
 
-    # Three sub-columns inside result: spacer | card | spacer
+    #result column
     _, card_col, _ = st.columns([1, 2, 1])
     with card_col:
         st.markdown(f"""
@@ -258,3 +260,5 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown("---")
 st.markdown("<center><i>AgroGuide — Smart Crop Recommendation</i></center>", unsafe_allow_html=True)
+
+#end
